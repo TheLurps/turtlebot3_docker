@@ -5,6 +5,8 @@ MAINTAINER Joshua Schraven
 RUN apt-get update && apt-get install --assume-yes \
   vim-nox \
   sudo \
+  python-pip \
+  ros-kinetic-desktop-full \
   ros-kinetic-turtlebot3 \
   ros-kinetic-turtlebot3-bringup \
   ros-kinetic-turtlebot3-description \
@@ -15,6 +17,10 @@ RUN apt-get update && apt-get install --assume-yes \
   ros-kinetic-turtlebot3-simulations \
   ros-kinetic-turtlebot3-slam \
   ros-kinetic-turtlebot3-teleop
+
+# install python packages
+RUN pip install -U scikit-learn numpy scipy
+RUN pip install --upgrade pip
 
 # create non-root user
 ENV USERNAME ros
