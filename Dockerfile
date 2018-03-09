@@ -18,3 +18,13 @@ RUN apt-get update && apt-get install --assume-yes \
 ENV USERNAME ros
 ENV HOME /home/$USERNAME
 USER $USERNAME
+
+# create catkin_ws
+RUN mkdir /home/$USERNAME/catkin_ws
+WORKDIR /home/$USERNAME/catkin_ws
+RUN mkdir /home/$USERNAME/catkin_ws/src
+RUN echo 'source /opt/ros/kinetic/setup.bash' >> /home/$USERNAME/.bashrc
+RUN source /opt/ros/kinetic/setup.bash
+RUN catkin_make
+RUN echo 'source /home/$USERNAME/catkin_ws/devel/setup.bash' >> /home/$USERNAME/.bashrc
+RUN source /home/$USERNAME/catkin_ws/devel/setup.bash

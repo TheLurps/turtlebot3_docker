@@ -14,7 +14,8 @@ MBP:~ thelurps$ /usr/X11/bin/xhost + $IP
 
 ## run container
 ```console
-MBP:~ thelurps$ docker run -ti --name turtlebot3 -e DISPLAY=$IP:0 -v /tmp/.X11-unix:/tmp/.X11-unix thelurps/turtlebot3
+MBP:~ thelurps$ $CATKIN_WS='~/catkin_ws'
+MBP:~ thelurps$ docker run -ti --name turtlebot3 -e DISPLAY=$IP:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v $CATKIN_WS:/root/catkin_ws thelurps/turtlebot3
 ```
 
 ## setup catkin workspace
