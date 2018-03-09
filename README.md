@@ -2,14 +2,9 @@
 
 ## start x server (macOS)
 ```console
-MBP:~ thelurps$ $IP=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
-MBP:~ thelurps$ xhost + $IP
-```
-
-or
-
-```console
+MBP:~ thelurps$ export IP=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
 MBP:~ thelurps$ /usr/X11/bin/xhost + $IP
+MBP:~ thelurps$ open -a XQuartz
 ```
 
 ## run container
@@ -20,12 +15,9 @@ MBP:~ thelurps$ docker run -ti --name turtlebot3 -e DISPLAY=$IP:0 -v /tmp/.X11-u
 
 ## setup catkin workspace
 ```console
-MBP:~ thelurps$ cd ~
-MBP:~ thelurps$ mkdir catkin_ws
-MBP:~ thelurps$ mkdir catkin_ws/src
-MBP:~ thelurps$ cd catkin_ws
-MBP:~ thelurps$ source /opt/ros/kinetic/setup.bash
-MBP:~ thelurps$ catkin_make
+ros@turtlebot3:~/catkin_ws$ mkdir src
+ros@turtlebot3:~/catkin_ws$ catkin_make
+ros@turtlebot3:~/catkin_ws$ source devel/setup.bash
 ```
 
 ## connect to container
@@ -36,7 +28,7 @@ MBP:~ thelurps$ docker exec -ti turtlebot3 bash
 ## setup env
 ```console
 MBP:~ thelurps$ source ~/catkin_ws/devel/setup.bash
-MBP:~ thelurps$ export TURTLEBOT3_MODEL=burger
+MBP:~ thelurps$ export TURTLEBOT3_MODEL=waffle
 ```
 
 ## launch gazebo
