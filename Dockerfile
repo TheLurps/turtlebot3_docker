@@ -13,3 +13,8 @@ RUN apt-get update && apt-get install --assume-yes \
   ros-kinetic-turtlebot3-simulations \
   ros-kinetic-turtlebot3-slam \
   ros-kinetic-turtlebot3-teleop
+
+# create non-root user
+ENV USERNAME ros
+ENV HOME /home/$USERNAME
+USER $USERNAME
