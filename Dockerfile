@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install --assume-yes \
 
 # create non-root user
 ENV USERNAME ros
+RUN adduser --disabled-password --gecos "" --shell /bin/bash --home /home/$USERNAME $USERNAME
 ENV HOME /home/$USERNAME
 USER $USERNAME
 
@@ -24,7 +25,7 @@ RUN mkdir /home/$USERNAME/catkin_ws
 WORKDIR /home/$USERNAME/catkin_ws
 RUN mkdir /home/$USERNAME/catkin_ws/src
 RUN echo 'source /opt/ros/kinetic/setup.bash' >> /home/$USERNAME/.bashrc
-RUN source /opt/ros/kinetic/setup.bash
-RUN catkin_make
-RUN echo 'source /home/$USERNAME/catkin_ws/devel/setup.bash' >> /home/$USERNAME/.bashrc
-RUN source /home/$USERNAME/catkin_ws/devel/setup.bash
+RUN /bin/bash -c 'source /opt/ros/kinetic/setup.bash'
+#RUN /bin/bash -c 'catkin_make'
+#RUN echo 'source /home/$USERNAME/catkin_ws/devel/setup.bash' >> /home/$USERNAME/.bashrc
+#RUN /bin/bash -c 'source /home/$USERNAME/catkin_ws/devel/setup.bash'
