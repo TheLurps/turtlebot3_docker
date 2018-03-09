@@ -3,6 +3,8 @@ FROM ros:kinetic-robot-xenial
 MAINTAINER Joshua Schraven
 
 RUN apt-get update && apt-get install --assume-yes \
+  vim-nox \
+  sudo \
   ros-kinetic-turtlebot3 \
   ros-kinetic-turtlebot3-bringup \
   ros-kinetic-turtlebot3-description \
@@ -16,7 +18,8 @@ RUN apt-get update && apt-get install --assume-yes \
 
 # create non-root user
 ENV USERNAME ros
-RUN adduser --disabled-password --gecos "" --shell /bin/bash --home /home/$USERNAME $USERNAME
+RUN adduser --ingroup sudo --disabled-password --gecos "" --shell /bin/bash --home /home/$USERNAME $USERNAME
+RUN bash -c 'echo $USERNAME:ros | chpasswd'
 ENV HOME /home/$USERNAME
 USER $USERNAME
 
