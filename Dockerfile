@@ -23,9 +23,7 @@ USER $USERNAME
 # create catkin_ws
 RUN mkdir /home/$USERNAME/catkin_ws
 WORKDIR /home/$USERNAME/catkin_ws
-RUN mkdir /home/$USERNAME/catkin_ws/src
+
+# add catkin env
 RUN echo 'source /opt/ros/kinetic/setup.bash' >> /home/$USERNAME/.bashrc
-RUN /bin/bash -c 'source /opt/ros/kinetic/setup.bash'
-#RUN /bin/bash -c 'catkin_make'
 RUN echo 'source /home/$USERNAME/catkin_ws/devel/setup.bash' >> /home/$USERNAME/.bashrc
-#RUN /bin/bash -c 'source /home/$USERNAME/catkin_ws/devel/setup.bash'
