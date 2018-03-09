@@ -25,11 +25,11 @@ MBP:~ thelurps$ docker exec -ti turtlebot3 bash
 
 # setup env
 ```console
-MBP:~ thelurps$ source ~/catkin_ws/devel/setup.bash
-MBP:~ thelurps$ export TURTLEBOT3_MODEL=waffle
+ros@turtlebot3:~/catkin_ws$ source ~/catkin_ws/devel/setup.bash
+ros@turtlebot3:~/catkin_ws$ export TURTLEBOT3_MODEL=waffle
 ```
 
 # launch gazebo
 ```console
-MBP:~ thelurps$ roslaunch turtlebot3_gazebo turtlebot3_world.launch
+ros@turtlebot3:~/catkin_ws$ roslaunch turtlebot3_gazebo turtlebot3_world.launch
 ```
