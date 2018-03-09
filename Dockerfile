@@ -3,6 +3,8 @@ FROM ros:kinetic-robot-xenial
 MAINTAINER Joshua Schraven
 
 RUN apt-get update && apt-get install --assume-yes \
+  vim-nox \
+  sudo \
   ros-kinetic-turtlebot3 \
   ros-kinetic-turtlebot3-bringup \
   ros-kinetic-turtlebot3-description \
@@ -13,3 +15,18 @@ RUN apt-get update && apt-get install --assume-yes \
   ros-kinetic-turtlebot3-simulations \
   ros-kinetic-turtlebot3-slam \
   ros-kinetic-turtlebot3-teleop
+
+# create non-root user
+ENV USERNAME ros
+RUN adduser --ingroup sudo --disabled-password --gecos "" --shell /bin/bash --home /home/$USERNAME $USERNAME
+RUN bash -c 'echo $USERNAME:ros | chpasswd'
+ENV HOME /home/$USERNAME
+USER $USERNAME
+
+# create catkin_ws
+RUN mkdir /home/$USERNAME/catkin_ws
+WORKDIR /home/$USERNAME/catkin_ws
+
+# add catkin env
+RUN echo 'source /opt/ros/kinetic/setup.bash' >> /home/$USERNAME/.bashrc
+RUN echo 'source /home/$USERNAME/catkin_ws/devel/setup.bash' >> /home/$USERNAME/.bashrc
