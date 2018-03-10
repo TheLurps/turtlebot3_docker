@@ -8,7 +8,7 @@ MBP:~ thelurps$ open -a XQuartz
 # run container
 ```console
 MBP:~ thelurps$ $CATKIN_WS='~/catkin_ws'
-MBP:~ thelurps$ docker run -ti --name turtlebot3 -e DISPLAY=$IP:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v $CATKIN_WS:/root/catkin_ws/src thelurps/turtlebot3
+MBP:~ thelurps$ docker run -ti --name turtlebot3 -e DISPLAY=$IP:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v $CATKIN_WS:/root/catkin_ws thelurps/turtlebot3
 ```
 
 # setup catkin workspace
